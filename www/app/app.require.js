@@ -95,8 +95,10 @@ require(['angular','app'], function (app) {
 
     console.log('passei no require');
 
-    document.addEventListener('deviceready', function() {
-        angular.bootstrap(document, ['Reffill']);
-    }, false);
+  
+    document.addEventListener("deviceready", onDeviceReady, false);
+        function onDeviceReady() {
+            angular.bootstrap(document, ['Reffill']);
+        }
    
 });

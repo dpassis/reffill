@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-       <base href="/">
-       <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+       <base href=".">
+       <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="css/index.css">
-
 
 
         <title>Hello World</title>
@@ -28,11 +27,12 @@
         };
         firebase.initializeApp(config);
         </script>
-        <script type="text/javascript" src="app/app.js"></script>
+       
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
 
         <!--start requirejs -->
          <script data-main="app/app.require.js" src="libs/js/require.js"></script>
+
     </body>
 </html>
