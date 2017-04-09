@@ -17,9 +17,20 @@
  * under the License.
  */
 var app = {
+
     // Application Constructor
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+    },
+
+
+
+    showAlert: function (message, title) {
+        if (navigator.notification) {
+            navigator.notification.alert(message, null, title, 'OK');
+        } else {
+            alert(title ? (title + ": " + message) : message);
+        }
     },
 
     // deviceready Event Handler
@@ -28,6 +39,7 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         this.receivedEvent('deviceready');
+        this.showAlert('passei no app');
     },
 
     // Update DOM on a Received Event
