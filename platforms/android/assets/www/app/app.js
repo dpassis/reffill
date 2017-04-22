@@ -79,7 +79,7 @@ define(['angular',
                         // to the parent module
                         require(["authController"], function () {
                             // Using OcLazyLoad we can inject the any module to the parent module
-                            $ocLazyLoad.inject('Togheter.auth');
+                            $ocLazyLoad.inject('Reffill.auth');
                             deferred.resolve();
                         });
                         return deferred.promise;
@@ -91,12 +91,25 @@ define(['angular',
 
 			.when('/about', {
 				templateUrl: 'app/components/about/views/aboutView.html',
-				controller: 'AboutController',
+				//controller: 'AboutController',
 				//controllerAs: 'authController			',
 				resolve: {
 					    langs: function (locale) {
 					      return locale.ready('common');
-			    		}
+			    		},
+						loadModule: ['$ocLazyLoad', '$q', function ($ocLazyLoad, $q) {
+	                        //debugger
+	                        var deferred = $q.defer();
+
+	                        // After loading the controller file we need to inject the module
+	                        // to the parent module
+	                        require(["authController"], function () {
+	                            // Using OcLazyLoad we can inject the any module to the parent module
+	                            $ocLazyLoad.inject('Reffill.auth');
+	                            deferred.resolve();
+	                        });
+	                        return deferred.promise;
+                    	}]
 			    	}
 
 			})

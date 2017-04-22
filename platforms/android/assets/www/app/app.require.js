@@ -1,5 +1,8 @@
 require.config({
     urlArgs: "bust=" + (new Date()).getTime(),
+    
+    waitSeconds: 0,
+
 	paths: {
 
 		/** load angular **/
@@ -28,7 +31,8 @@ require.config({
 
 
         /********* Required Controllers *****************/
-        //authController: 'components/auth/auth'
+        authController: 'components/auth/auth',
+        aboutController: 'components/about/about'
 
 	},
 
@@ -89,16 +93,23 @@ require.config({
 
 
 });
+
 baseUrl:'/';
+
+
 
 require(['angular','app'], function (app) {
 
     console.log('passei no require');
 
-  
+  if(window.cordova){
+    
     document.addEventListener("deviceready", onDeviceReady, false);
         function onDeviceReady() {
             angular.bootstrap(document, ['Reffill']);
         }
+   }else{
+        angular.bootstrap(document, ['Reffill']);
+   }
    
 });
