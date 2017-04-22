@@ -8,3 +8,12 @@ app.controller('aboutController',['$scope','$route', function ($scope,$route){
     $scope.$route = $route;
 
 }]);
+
+
+
+
+
+
+
+
+

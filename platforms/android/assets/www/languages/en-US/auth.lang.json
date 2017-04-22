@@ -1,0 +1,9 @@
+{
+  "createAccount": "Create an Account",
+  "email": "e-mail",
+  "password": "password",
+  "confPassword": "confirm the password",
+  "login": "Login",
+  "forgotPassword": "Forgot your password?",
+  "errPswd": "Passwords don't match"
+}

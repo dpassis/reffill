@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>Hello World</title>
+    </head>
+    <body data-ng-controller="MainController">
+      <div ng-view></div>
+
+        <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+        <script>
+          // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBhgTxcOfXOH9CZfzK9kcixaN6MOUtbxDo",
+            authDomain: "reffill-7ffbe.firebaseapp.com",
+            databaseURL: "https://reffill-7ffbe.firebaseio.com",
+            projectId: "reffill-7ffbe",
+            storageBucket: "reffill-7ffbe.appspot.com",
+            messagingSenderId: "1047992509132"
+        };
+        firebase.initializeApp(config);
+        </script>
+       
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+
+        <!--start requirejs -->
+         <script data-main="app/app.require.js" src="libs/js/require.js"></script>
+
+    </body>
+</html>
