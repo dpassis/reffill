@@ -1,9 +1,0 @@
-{
-  "createAccount": "Crear una Cuenta",
-  "email": "correo electrónico",
-  "password": "contraseña",
-  "confPassword": "confirme la contraseña",
-  "login": "Iniciar Sesión",
-  "forgotPassword": "¿Olvidaste tu contraseña?",
-  "errPswd": "Las contraseñas no coinciden"
-}

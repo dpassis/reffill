@@ -1,9 +1,0 @@
-{
-  "createAccount": "Criar uma conta",
-  "email": "e-mail",
-  "password": "senha",
-  "confPassword": "confirme a senha",
-  "login": "Entrar",
-  "forgotPassword": "Esqueceu sua senha?",
-  "errPswd": "Senhas não são iguais"
-}
