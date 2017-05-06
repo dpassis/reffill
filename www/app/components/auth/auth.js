@@ -1,16 +1,15 @@
-define(['angular'], function (angular) {
-	var app = angular.module('Reffill.auth',[]);
+var app = angular.module('auth',['reffill']);
 
 app.controller('authController',['$scope','$route', function ($scope,$route){
 
-	$scope.name = "authController";
+	$scope.name = "auth";
     //$scope.params = $routeParams;
     $scope.$route = $route;
 
 }]);
 
 
-app.config(function($routeProvider, $locationProvider, $ocLazyLoadProvider, $controllerProvider, $provide) {
+app.config(function($routeProvider,$route, $locationProvider) {
 
 				app.registerController = $controllerProvider.register;
 			 	app.$register = $provide;
@@ -28,24 +27,10 @@ app.config(function($routeProvider, $locationProvider, $ocLazyLoadProvider, $con
 
 			})
 
-			.when('/auth', {
-				templateUrl: 'app/components/auth/views/authView.html',
-				controller: 'authController',
-				resolve: {
-				  langs: function (locale) {
-				  return locale.ready('auth');
-		    	}
-		    }
-
-			})
-
 			//.otherwise({ redirectTo: '/auth' });
 
 
 		 // Add HTML5 History API support
-		// $locationProvider.html5Mode(true);
-
-});
-
+		$locationProvider.html5Mode(true);
 
 });

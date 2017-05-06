@@ -1,5 +1,5 @@
 // add ngRoute module
-angular.module("Reffill", ['ngRoute',
+angular.module("reffill", ['ngRoute',
 							'ngMockE2E',
 							'ngSanitize',
 							'ngLocalize',

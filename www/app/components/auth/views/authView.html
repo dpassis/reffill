@@ -1,24 +1,38 @@
-<div class="login-div">
-	<form class="login-form " action="#">
-		<div class="w3-card-4">
-			<header class="w3-container w3-theme w3-center">
-			  <h3><span class="w3-tag w3-round w3-text-theme w3-white">2</span>Gether</h3>
-			</header>
-		</br>
-			<div class="w3-input-group" >      
-              <input data-i18n-attr="{placeholder: 'auth.email'}" id="email" class="w3-input"  type="email" required>
-            </div>
-            <div class="w3-input-group">      
-              <input data-i18n-attr="{placeholder: 'auth.password'}" id="password" class="w3-input"  type="password" required>
-            </div>
-            <p class=" w3-center">
-	            <a data-i18n="auth.forgotPassword" href="#" onclick="" class="w3-text-theme w3-hover-text-pink" style="margin-right: 10px;" target="_parent">
-	            </a>
-            </p>
-            <div class="w3-input-group w3-center">
-            	<button  data-i18n="auth.login" onclick="app.login()" class="w3-btn w3-round w3-theme" style="width: 40%;"> </button>
+<div class="row">
+	<form class="col s12" action="#">
+		<div class="row">
+      <div class="row">
+        <img src="img/refill.png">
+      </div>
+
+		  <div class="row">
+        <div class="input-field col s12">
+          <input  id="email" type="email" class="validate">
+          <label data-i18n="auth.email" for="email"></label>
+    	 </div>
+    	</div>
+      	<div class="row">
+        	<div class="input-field col s12">
+          		<input  id="password" type="password" class="validate">
+          		<label data-i18n="auth.password" for="password"></label>
         	</div>
-			<a data-i18n="auth.createAccount" id="lnkCreateAccount" href="auth/create" class="w3-btn-block w3-theme-l2"></a>
+      	</div>
+      	<div class="row center-align ">
+			<a data-i18n="auth.forgotPassword" id="forgotPassword" href="#" class="red-text text-darken-2"></a>
+		</div>
+      	<div class="row center-align">
+      		 <button data-i18n="auth.login" onclick="app.login()" class="teal btn waves-effect waves-light" name="action"></button>
+      	</div>
+      	<div  class="row center-align">
+    		<i class="fa fa-facebook-square" style="font-size:36px; color: #3b5998;"></i>
+    		<i class="fa fa-google-plus-square" style="font-size:36px; color: #dd4b39;"></i>
+    		<i class="fa fa-twitter-square" style="font-size:36px; color: #55acee;"></i>
+    	</div>
+    	<br>
+    	<div class="row center-align">
+			<a data-i18n="auth.createAccount" id="lnkCreateAccount" href="auth/create" class=""></a>
+		</div>
+		
 		</div>
 	</form>
 </div>	

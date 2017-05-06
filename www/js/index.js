@@ -1,8 +1,3 @@
- if(window.cordova){
-    document.write("<base href='.'/>");
-}else{
-    document.write("<base href='/' />");
-}
 var app = {
     initFirebase : function() {
         this.auth = firebase.auth();
@@ -21,4 +16,6 @@ window.onload = function() {
 
     app.initFirebase();
     console.log('Reffill is ON');
+    Materialize.updateTextFields()
+    console.log('Materialize is ON');
 };
