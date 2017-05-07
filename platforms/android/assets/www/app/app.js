@@ -11,7 +11,7 @@
 		    'en-US',
 		    'pt-BR',
 		    'es'
-		  ])
+		  ]);
 
 	
 		app.controller('MainController', function($scope, $route, $location, locale) {
@@ -20,7 +20,7 @@
 		     $scope.setLocale = locale.setLocale;
 
 		     console.log(locale.getLocale());
-		 })
+		 });
 
 
 		app.config(function($routeProvider, $locationProvider) {
@@ -40,7 +40,7 @@
 
 			.when('/auth', {
 				templateUrl: 'app/components/auth/views/authView.html',
-				controller: 'authController',
+				//controller: 'authController',
 				//controllerAs: 'auth',
 				resolve: {
 				    langs: function (locale) {

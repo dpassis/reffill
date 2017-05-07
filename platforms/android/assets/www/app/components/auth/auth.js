@@ -1,12 +1,22 @@
-var app = angular.module('auth',['reffill']);
+var app = angular.module('reffill.auth',['reffill']);
 
-app.controller('authController',['$scope','$route', function ($scope,$route){
+app.value('localeSupported', [
+		    'en-US',
+		    'pt-BR',
+		    'es'
+		  ]);
+
+app.controller('authController',function ($scope,$route,$location, locale){
 
 	$scope.name = "auth";
     //$scope.params = $routeParams;
-    $scope.$route = $route;
+     $scope.$route = $route;
+     $scope.$location = $location;
+     $scope.setLocale = locale.setLocale;
 
-}]);
+     console.log(locale.getLocale());
+
+});
 
 
 app.config(function($routeProvider,$route, $locationProvider) {
@@ -18,7 +28,7 @@ app.config(function($routeProvider,$route, $locationProvider) {
 			$routeProvider
 			.when('/auth/create', {
 				templateUrl: 'app/components/auth/views/createView.html',
-				controller: 'authController',
+ 				controller: 'authController',
 				resolve: {
 				  langs: function (locale) {
 				  return locale.ready('auth');

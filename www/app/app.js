@@ -4,14 +4,16 @@
 											  'ngMockE2E',
 											  'ngSanitize',
 											  'ngLocalize',
-											  'ngCookies'
+											  'ngCookies',
+											  'ngResource',
+											  'reffill.auth'
 												]);
 
 		app.value('localeSupported', [
 		    'en-US',
 		    'pt-BR',
 		    'es'
-		  ])
+		  ]);
 
 	
 		app.controller('MainController', function($scope, $route, $location, locale) {
@@ -20,7 +22,7 @@
 		     $scope.setLocale = locale.setLocale;
 
 		     console.log(locale.getLocale());
-		 })
+		 });
 
 
 		app.config(function($routeProvider, $locationProvider) {
@@ -40,7 +42,7 @@
 
 			.when('/auth', {
 				templateUrl: 'app/components/auth/views/authView.html',
-				controller: 'authController',
+				controller: 'AuthController',
 				//controllerAs: 'auth',
 				resolve: {
 				    langs: function (locale) {
