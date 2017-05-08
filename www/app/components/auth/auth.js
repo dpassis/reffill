@@ -39,10 +39,10 @@ app.config(['$routeProvider', '$locationProvider',function($routeProvider, $loca
 
 			})
 
-			//.otherwise({ redirectTo: '/auth' });
+			.otherwise({ redirectTo: '/auth' });
 
 
-		 // Add HTML5 History API support
-		$locationProvider.html5Mode(true);
+		 	// Add HTML5 History API support
+			$locationProvider.html5Mode(true);
 
 }]);

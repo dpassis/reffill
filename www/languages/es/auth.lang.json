@@ -5,5 +5,6 @@
   "confPassword": "confirme la contraseña",
   "login": "Iniciar Sesión",
   "forgotPassword": "¿Olvidaste tu contraseña?",
-  "errPswd": "Las contraseñas no coinciden"
+  "errPswd": "Las contraseñas no coinciden",
+  "loginWith": "Entrar con:"
 }

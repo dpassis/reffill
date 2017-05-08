@@ -1,46 +1,48 @@
-var app = angular.module('reffill.auth',['reffill']);
+var app = angular.module('reffill.auth',[]);
 
-app.value('localeSupported', [
-		    'en-US',
-		    'pt-BR',
-		    'es'
-		  ]);
 
-app.controller('authController',function ($scope,$route,$location, locale){
+app.controller('AuthController',
+							['$scope',
+							 '$route',
+							  '$location', 
+							  'locale', 
+							  function ($scope, $route, $location, locale){
 
-	$scope.name = "auth";
+	 $scope.name = "auth";
     //$scope.params = $routeParams;
-     $scope.$route = $route;
+     //$scope.$route = $route;
      $scope.$location = $location;
      $scope.setLocale = locale.setLocale;
+     //$scope.$routeProvider = $routeProvider;
+
 
      console.log(locale.getLocale());
 
-});
+}]);
 
 
-app.config(function($routeProvider,$route, $locationProvider) {
+app.config(['$routeProvider', '$locationProvider',function($routeProvider, $locationProvider) {
 
-				app.registerController = $controllerProvider.register;
-			 	app.$register = $provide;
+				//app.registerController = $controllerProvider.register;
+			 	//app.$register = $provide;
 			
 					
 			$routeProvider
 			.when('/auth/create', {
 				templateUrl: 'app/components/auth/views/createView.html',
- 				controller: 'authController',
+ 				controller: 'AuthController',
 				resolve: {
 				  langs: function (locale) {
 				  return locale.ready('auth');
+		    		}
 		    	}
-		    }
 
 			})
 
-			//.otherwise({ redirectTo: '/auth' });
+			.otherwise({ redirectTo: '/auth' });
 
 
-		 // Add HTML5 History API support
-		$locationProvider.html5Mode(true);
+		 	// Add HTML5 History API support
+			$locationProvider.html5Mode(true);
 
-});
+}]);

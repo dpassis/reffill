@@ -4,7 +4,9 @@
 											  'ngMockE2E',
 											  'ngSanitize',
 											  'ngLocalize',
-											  'ngCookies'
+											  'ngCookies',
+											  'ngResource',
+											  'reffill.auth'
 												]);
 
 		app.value('localeSupported', [
@@ -40,7 +42,7 @@
 
 			.when('/auth', {
 				templateUrl: 'app/components/auth/views/authView.html',
-				//controller: 'authController',
+				controller: 'AuthController',
 				//controllerAs: 'auth',
 				resolve: {
 				    langs: function (locale) {
