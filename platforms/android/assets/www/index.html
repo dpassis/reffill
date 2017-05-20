@@ -15,32 +15,18 @@
         <!-- Compiled and minified CSS Materialize -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
 
-        <!-- angular scripts -->
-        <script type="text/javascript" src="libs/js/angular.min.js"></script>
-        <script type="text/javascript" src="libs/js/angular-cookies.min.js"></script>
-        <script type="text/javascript" src="libs/js/angular-localization.js"></script>
-        <script type="text/javascript" src="libs/js/angular-mocks.js"></script>
-        <script type="text/javascript" src="libs/js/angular-route.min.js"></script>
-        <script type="text/javascript" src="libs/js/angular-sanitize.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min.js"></script>
-
         <!-- Google authentication -->
         <script src="https://apis.google.com/js/platform.js" async defer></script>
 
-        <!-- app scripts -->
-        <script type="text/javascript" src="app/app.js"></script>
-
-          <!-- controller scripts -->
-        <script type="text/javascript" src="app/components/auth/auth.js"></script>
-
         <!--Import jQuery before materialize.js-->
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 
     <title>Reffill</title>
     </head>
-    <body ng-app="reffill" ng-controller="MainController">
+      <body data-ng-controller="MainController">
       <div class="container" ng-view></div>
 
         <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
@@ -59,6 +45,9 @@
        
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+
+         <!--start requirejs -->
+         <script data-main="app/app.require.js" src="libs/js/requirejs/2.3.3/require.js"></script>
 
     </body>
 </html>

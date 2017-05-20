@@ -4,9 +4,6 @@ var app = {
     this.database = firebase.database();
     this.storage = firebase.storage();
 
-    // Initiates Firebase auth and listen to auth state changes.
-    //this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this))
-
     console.log('Firebase init is ok');
     },
 
@@ -44,32 +41,35 @@ var app = {
             }
 
 
-        }if(providerId === 'facebook'){
-            provider = new firebase.auth.FacebookAuthProvider();
-            console.log("Provider: "+ providerId);
-        }else if(providerId === 'google'){
-            provider = new firebase.auth.GoogleAuthProvider();
-            console.log("Provider: "+ providerId);
-        }else if(providerId === 'twitter'){
-            provider = new firebase.auth.FacebookAuthProvider();
-            console.log("Provider: "+ providerId);
+        }else {
+
+            if(providerId === 'facebook'){
+                provider = new firebase.auth.FacebookAuthProvider();
+                console.log("Provider: "+ providerId);
+            }else if(providerId === 'google'){
+                provider = new firebase.auth.GoogleAuthProvider();
+                console.log("Provider: "+ providerId);
+            }else if(providerId === 'twitter'){
+                provider = new firebase.auth.FacebookAuthProvider();
+                console.log("Provider: "+ providerId);
+            }
+
+
+            firebase.auth().signInWithRedirect(provider).then(function() {
+              firebase.auth().getRedirectResult().then(function(result) {
+                // This gives you a Google Access Token.
+                // You can use it to access the Google API.
+                var token = result.credential.accessToken;
+                // The signed-in user info.
+                var user = result.user;
+                // ...
+              }).catch(function(error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+              });
+            });
         }
-
-
-firebase.auth().signInWithRedirect(provider).then(function() {
-  firebase.auth().getRedirectResult().then(function(result) {
-    // This gives you a Google Access Token.
-    // You can use it to access the Google API.
-    var token = result.credential.accessToken;
-    // The signed-in user info.
-    var user = result.user;
-    // ...
-  }).catch(function(error) {
-    // Handle Errors here.
-    var errorCode = error.code;
-    var errorMessage = error.message;
-  });
-});
 
      },
 
@@ -79,7 +79,13 @@ firebase.auth().signInWithRedirect(provider).then(function() {
 
         var email = $("#email").val();
         var password = $("#password").val();
-        var confPassword = $("#confPassword").val();
+
+        firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // ...
+        });
 
     },
 

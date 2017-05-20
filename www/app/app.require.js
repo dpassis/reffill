@@ -1,36 +1,40 @@
 require.config({
     urlArgs: "bust=" + new Date().getTime(),
-    
+
     waitSeconds: 0,
+
+    //baseUrl:'/',
 
 	paths: {
 
+        //app: 'app/app',
+
 		/** load angular **/
-		angular: 'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min',
+		angular: 'libs/js/angularjs/1.5.6/angular.min',
 
 		/** angular route **/
-        angular_route: 'https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route',
+        angular_route: 'libs/js/angularjs/1.5.6/angular-route.min',
 
         /** angular mocks **/
-        angular_mocks: 'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-mocks',
+        angular_mocks: 'libs/js/angularjs/1.5.6/angular-mocks',
 
         /** angular mocks **/
-        angular_cookies: 'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-cookies',
+        angular_cookies: 'libs/js/angularjs/1.5.6/angular-cookies.min',
 
         /** angular sanitize **/
-        angular_sanitize: 'https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-sanitize',
+        angular_sanitize: 'libs/js/angularjs/1.5.6/angular-sanitize.min',
 
         /** angular localization **/
-        angular_localization: 'https://rawgit.com/doshprompt/bower-angular-localization/master/angular-localization',
+        angular_localization: 'libs/js/angular-localization/1.5.1/angular-localization.min',
 
 		/** load ocLazyLoad **/
-		angular_ocLazyLoad: 'https://cdnjs.cloudflare.com/ajax/libs/oclazyload/1.0.9/ocLazyLoad',
+		angular_ocLazyLoad: 'libs/js/ocLazyLoad/1.1.0/ocLazyLoad.min',
 
         /** load ui_bootstrap **/
-        angular_ui_bootstrap: 'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/1.3.3/ui-bootstrap-tpls.min',
+        angular_ui_bootstrap: 'libs/js/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min',
 
         /** load resource **/
-        angular_resource: 'https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.min',
+        angular_resource: 'libs/js/angularjs/1.5.6/angular-resource.min',
 
 
         /********* Required Controllers *****************/
@@ -100,8 +104,6 @@ require.config({
 
 
 });
-
-baseUrl:'/';
 
 
 

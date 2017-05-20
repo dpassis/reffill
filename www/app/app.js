@@ -5,7 +5,8 @@ define(['angular',
 		'angular_localization',
 		'angular_cookies',
 		'angular_resource',
-		'angular_ocLazyLoad'], 
+		'angular_ocLazyLoad',
+		'angular_ui_bootstrap'], 
 	function () {
 
 		var app = angular.module('reffill', [
@@ -15,7 +16,8 @@ define(['angular',
 											  'ngLocalize',
 											  'ngCookies',
 											  'ngResource',
-											  'oc.lazyLoad'
+											  'oc.lazyLoad',
+											  'ui.bootstrap'
 												]);
 
 		app.value('localeSupported', [
@@ -54,13 +56,12 @@ define(['angular',
 
 			$routeProvider
 			.when('/', {
-				templateUrl: 'app/components/home/views/homeView.html',
+				templateUrl: '/app/components/home/views/homeView.html',
 				resolve: {
 				  langs: function (locale) {
 				  return locale.ready('home');
 		    	}
 		    }
-
 			})
 
 
