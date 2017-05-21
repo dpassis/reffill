@@ -10,31 +10,31 @@ require.config({
         //app: 'app/app',
 
 		/** load angular **/
-		angular: 'libs/js/angularjs/1.5.6/angular.min',
+		angular: 'https://code.angularjs.org/1.5.6/angular.min',
 
 		/** angular route **/
-        angular_route: 'libs/js/angularjs/1.5.6/angular-route.min',
+        angular_route: 'https://code.angularjs.org/1.5.6/angular-route.min',
 
         /** angular mocks **/
-        angular_mocks: 'libs/js/angularjs/1.5.6/angular-mocks',
+        angular_mocks: 'https://code.angularjs.org/1.5.6/angular-mocks',
 
         /** angular mocks **/
-        angular_cookies: 'libs/js/angularjs/1.5.6/angular-cookies.min',
+        angular_cookies: 'https://code.angularjs.org/1.5.6/angular-cookies.min',
 
         /** angular sanitize **/
-        angular_sanitize: 'libs/js/angularjs/1.5.6/angular-sanitize.min',
+        angular_sanitize: 'https://code.angularjs.org/1.5.6/angular-sanitize.min',
 
         /** angular localization **/
-        angular_localization: 'libs/js/angular-localization/1.5.1/angular-localization.min',
+        angular_localization: 'https://rawgit.com/doshprompt/bower-angular-localization/master/angular-localization',
 
 		/** load ocLazyLoad **/
-		angular_ocLazyLoad: 'libs/js/ocLazyLoad/1.1.0/ocLazyLoad.min',
+		angular_ocLazyLoad: 'https://cdnjs.cloudflare.com/ajax/libs/oclazyload/1.1.0/ocLazyLoad.min',
 
         /** load ui_bootstrap **/
-        angular_ui_bootstrap: 'libs/js/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min',
+        angular_ui_bootstrap: 'https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min',
 
         /** load resource **/
-        angular_resource: 'libs/js/angularjs/1.5.6/angular-resource.min',
+        angular_resource: 'https://code.angularjs.org/1.5.6/angular-resource.min',
 
 
         /********* Required Controllers *****************/
