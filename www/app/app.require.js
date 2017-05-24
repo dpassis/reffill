@@ -30,7 +30,7 @@ require.config({
 		angular_ocLazyLoad: 'libs/js/oclazyload/1.1.0/ocLazyLoad.min',
 
         /** load ui_bootstrap **/
-        angular_ui_bootstrap: 'js/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min',
+        angular_ui_bootstrap: 'libs/js/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min',
 
 
         /********* Required Controllers *****************/

@@ -1,4 +1,6 @@
 var app = {
+
+    
     initFirebase : function() {
     this.auth = firebase.auth();
     this.database = firebase.database();
@@ -77,6 +79,8 @@ var app = {
 
     signIn: function () {
 
+        console.log('signin');
+
         var email = $("#email").val();
         var password = $("#password").val();
 
@@ -102,6 +106,6 @@ window.onload = function() {
 
     app.initFirebase();
     console.log('Reffill is ON');
-    Materialize.updateTextFields()
+    Materialize.updateTextFields();
     console.log('Materialize is ON');
 };
