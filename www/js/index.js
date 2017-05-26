@@ -1,28 +1,31 @@
-var app = {
+var app = {}
 
     
-    initFirebase : function() {
+    app.initFirebase = function() {
     this.auth = firebase.auth();
     this.database = firebase.database();
     this.storage = firebase.storage();
 
     console.log('Firebase init is ok');
-    },
+    };
 
-
+    appt.teste = function () {
+         alert('fuck yourself');
+    };
 
     /***************************
     * Authentication Functions *
     ***************************/
-    createUser: function (providerId) {
+    app.createUser = function () {
 
+        alert('fuck yourself');
         var provider;
         var email = $("#email").val();
         var password = $("#password").val();
         var confPassword = $("#confPassword").val();
 
 
-        if(providerId == 'email'){
+        if(providerId == 'mail'){
 
             if(password == confPassword){ 
 
@@ -37,8 +40,8 @@ var app = {
 
             }else{
 
-                $(".errMsg").css("background-color", "#FFE4E1");
-                $(".errMsg").show();
+                 $(".errMsg").css("background-color", "#FFE4E1");
+                 $(".errMsg").show();
                  console.error("senhas diferentes");
             }
 
@@ -73,11 +76,11 @@ var app = {
             });
         }
 
-     },
+     };
 
 
 
-    signIn: function () {
+    app.signIn = function () {
 
         console.log('signin');
 
@@ -91,14 +94,12 @@ var app = {
           // ...
         });
 
-    },
+    };
 
-    signOut : function() {
+    app.signOut = function() {
         // Sign out of Firebase.
         this.auth.signOut();
-    }
-
-};
+    };
 
 
 /**Initialize app**/
