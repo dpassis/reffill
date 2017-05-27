@@ -5,8 +5,14 @@ require.config({
 
 	paths: {
 
+        /** load firebase **/
+        firebase: 'libs/js/firebase/3.7.4/firebase',
+
 		/** load angular **/
 		angular: 'libs/js/angularjs/1.5.6/angular.min',
+
+        /** load angular fire **/
+        angular_fire: 'libs/js/angularfire/2.3.0/angularfire.min',
 
 		/** angular route **/
         angular_route: 'libs/js/angularjs/1.5.6/angular-route.min',
@@ -85,9 +91,13 @@ require.config({
             deps: ['angular']
         },
 
+        angular_fire: {
+            deps: ['angular','firebase']
+        },
+
         /** deps to app **/
         app: {
-        	deps: ['angular','angular_ocLazyLoad', 'angular_ui_bootstrap']
+        	deps: ['angular','angular_ocLazyLoad', 'angular_ui_bootstrap','firebase']
         },
 
         authController: {

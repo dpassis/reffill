@@ -15,13 +15,13 @@ if(window.cordova){
 var app = {};
 
     
-    app.initFirebase = function() {
+ /**   app.initFirebase = function() {
         this.auth = firebase.auth();
         this.database = firebase.database();
         this.storage = firebase.storage();
 
         console.log('Firebase init is ok');
-    };
+    };**/
 
 
     /***************************
@@ -116,7 +116,7 @@ var app = {};
 /**Initialize app**/
 window.onload = function() {
 
-    app.initFirebase();
+   // app.initFirebase();
     console.log('Reffill is ON');
     Materialize.updateTextFields();
     console.log('Materialize is ON');

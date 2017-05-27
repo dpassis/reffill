@@ -5,7 +5,9 @@ define(['angular',
 		'angular_localization',
 		'angular_cookies',
 		'angular_resource',
-		'angular_ocLazyLoad'], 
+		'angular_ocLazyLoad',
+		'angular_fire',
+		'firebase'], 
 	function () {
 
 		var app = angular.module('reffill', [
@@ -15,7 +17,8 @@ define(['angular',
 											  'ngLocalize',
 											  'ngCookies',
 											  'ngResource',
-											  'oc.lazyLoad'
+											  'oc.lazyLoad',
+											  'firebase'
 												]);
 
 		app.value('localeSupported', [
@@ -24,8 +27,23 @@ define(['angular',
 		    'es'
 		  ]);
 
+		//var ref = new Firebase('https://reffill-7ffbe.firebaseio.com/');
+		var config = {
+            apiKey: "AIzaSyBhgTxcOfXOH9CZfzK9kcixaN6MOUtbxDo",
+            authDomain: "reffill-7ffbe.firebaseapp.com",
+            databaseURL: "https://reffill-7ffbe.firebaseio.com",
+            projectId: "reffill-7ffbe",
+            storageBucket: "reffill-7ffbe.appspot.com",
+            messagingSenderId: "1047992509132"
+        };
+        firebase.initializeApp(config);
+
 	
-		app.controller('MainController', function($scope, $route, $location, locale) {
+		app.controller('MainController', function($scope, $route, $location, locale, $firebaseAuth) {
+			 var auth = $firebaseAuth();
+
+			 console.log(auth);
+
 		     $scope.$route = $route;
 		     $scope.$location = $location;
 		     $scope.setLocale = locale.setLocale;
