@@ -17,3 +17,5 @@ angular.module('myApp', ['firebase'])
         user: user
     };
 });
+
+

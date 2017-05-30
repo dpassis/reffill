@@ -1,17 +1,4 @@
 
-//verify web or cordova browser
-if(window.cordova){
-  
-  document.write("<base href='/android_asset/www/'");
-
-}else{
-
-  document.write("<base href='/'");
-
-}
-
-
-
 var app = {};
 
     

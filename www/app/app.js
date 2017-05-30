@@ -27,22 +27,12 @@ define(['angular',
 		    'es'
 		  ]);
 
-		//var ref = new Firebase('https://reffill-7ffbe.firebaseio.com/');
-		var config = {
-            apiKey: "AIzaSyBhgTxcOfXOH9CZfzK9kcixaN6MOUtbxDo",
-            authDomain: "reffill-7ffbe.firebaseapp.com",
-            databaseURL: "https://reffill-7ffbe.firebaseio.com",
-            projectId: "reffill-7ffbe",
-            storageBucket: "reffill-7ffbe.appspot.com",
-            messagingSenderId: "1047992509132"
-        };
-        firebase.initializeApp(config);
-
-	
 		app.controller('MainController', function($scope, $route, $location, locale, $firebaseAuth) {
 			 var auth = $firebaseAuth();
+			 var storage = firebase.storage();
 
 			 console.log(auth);
+			 console.log(storage);
 
 		     $scope.$route = $route;
 		     $scope.$location = $location;
@@ -57,14 +47,29 @@ define(['angular',
 				app.registerController = $controllerProvider.register;
 			 	app.$register = $provide;
 
+			 	/** Initialize firebase config **/
+			 	var config = {
+		            apiKey: "AIzaSyBhgTxcOfXOH9CZfzK9kcixaN6MOUtbxDo",
+		            authDomain: "reffill-7ffbe.firebaseapp.com",
+		            databaseURL: "https://reffill-7ffbe.firebaseio.com",
+		            projectId: "reffill-7ffbe",
+		            storageBucket: "reffill-7ffbe.appspot.com",
+		            messagingSenderId: "1047992509132"
+		        };
+		        if(firebase.initializeApp(config)!== null)
+		        	console.log('Firebase init is ok!');
 
-			 	console.log("principal route");
+
+
+				/** ocLazy Load Config **/		
 				$ocLazyLoadProvider.config({
 			     modules: [{
 			    		name: 'auth-controller',
 			    		files: ['components/auth/controllers/auth-controller.js'],
 			    		name: 'about',
-			    		files: ['components/about/controllers/about-controller.js']
+			    		files: ['components/about/controllers/about-controller.js'],
+			    		name: 'profile',
+			    		files: ['components/profile/controllers/profile-controller.js']
 			 	 }]
 
 			  });
@@ -134,6 +139,43 @@ define(['angular',
 			})
 
 
+			.when('/profile', {
+				templateUrl: 'app/components/profile/views/profileView.html',
+				//controller: 'AboutController',
+				//controllerAs: 'authController			',
+				resolve: {
+
+						// controller will not be loaded until $requireSignIn resolves
+				      	// Auth refers to our $firebaseAuth wrapper in the factory below
+				     	"currentAuth": ["Auth", function(Auth) {
+				        // $requireSignIn returns a promise so the resolve waits for it to complete
+				        // If the promise is rejected, it will throw a $routeChangeError (see above)
+				        return Auth.$requireSignIn();
+				      	}],
+
+
+					    langs: function (locale) {
+					      return locale.ready('common');
+			    		},
+						loadModule: ['$ocLazyLoad', '$q', function ($ocLazyLoad, $q) {
+	                        //debugger
+	                        var deferred = $q.defer();
+
+	                        // After loading the controller file we need to inject the module
+	                        // to the parent module
+	                        require(["profilerController"], function () {
+	                            // Using OcLazyLoad we can inject the any module to the parent module
+	                            $ocLazyLoad.inject('reffill.profile');
+	                            deferred.resolve();
+	                        });
+	                        return deferred.promise;
+                    	}]
+			    	}
+
+			})
+
+
+
 			.otherwise({ redirectTo: '/' });
 
 
@@ -143,7 +185,8 @@ define(['angular',
 		})
 
 
-		app.run(function($httpBackend) {
+		app.run(function($httpBackend,$rootScope, $location) {
+
 		    $httpBackend.whenGET('languages/en-US/')
 		      .respond(angular.toJson({
 		      }));
@@ -154,6 +197,22 @@ define(['angular',
 		      .respond(angular.toJson({
 		      }));
 		    $httpBackend.whenGET(/.*/).passThrough();
+
+
+		     $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
+		    // We can catch the error thrown when the $requireSignIn promise is rejected
+		    // and redirect the user back to the home page
+		    if (error === "AUTH_REQUIRED") {
+		      $location.path("/auth");
+		    }
+		  });
 	  });
+
+
+		app.factory("Auth", ["$firebaseAuth",
+  			function($firebaseAuth) {
+    		return $firebaseAuth();
+  			}
+		]);
 
 });

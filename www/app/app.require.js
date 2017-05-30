@@ -41,7 +41,8 @@ require.config({
 
         /********* Required Controllers *****************/
         authController: 'components/auth/controllers/auth-controller',
-        aboutController: 'components/about/controllers/about-controller'
+        aboutController: 'components/about/controllers/about-controller',
+        profileController: 'components/profile/controllers/profile-controller'
 
 	},
 
