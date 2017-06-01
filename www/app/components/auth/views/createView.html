@@ -7,25 +7,25 @@
 
       <div class="row">
         <div class="input-field col s12">
-          <input  id="email" type="email" class="validate">
+          <input  id="email" ng-model="email" type="email" class="validate">
           <label data-i18n="auth.email" for="email"></label>
        </div>
       </div>
         <div class="row">
           <div class="input-field col s12">
-              <input  id="password" type="password" class="validate">
+              <input  id="password" ng-model="password" type="password" class="validate">
               <label data-i18n="auth.password" for="password"></label>
           </div>
         </div>
          <div class="row">
           <div class="input-field col s12">
-              <input  id="confPassword" type="password" class="validate">
+              <input  id="confPassword" ng-model="confPassword" type="password" class="validate">
               <label data-i18n="auth.confPassword" for="confPassword"></label>
           </div>
         </div>
         <div class="row center-align errMsg" data-i18n-attr="errPswd"></div>
         <div class="row center-align">
-           <button id="btnCreateUser" type="submit" data-i18n="auth.createAccount" onclick="app.createUser('email')" class="teal btn waves-effect waves-light"></button>
+           <button id="btnCreateUser" type="submit" data-i18n="auth.createAccount" ng-click="createUser('email')" class="teal btn waves-effect waves-light"></button>
         </div>
         <div  class="row center-align">
          <a id="lnkCreateFacebook" href="" onclick="app.createUser('facebook')"><i class="fa fa-facebook-square" style="font-size:36px; color: #3b5998;"></i></a>

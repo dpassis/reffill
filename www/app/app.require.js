@@ -39,10 +39,18 @@ require.config({
         angular_ui_bootstrap: 'libs/js/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min',
 
 
-        /********* Required Controllers *****************/
+        /********* Auth Module *****************/
         authController: 'components/auth/controllers/auth-controller',
+        authService: 'components/auth/services/auth-service',
+       
+
+        /********* About Module *****************/
         aboutController: 'components/about/controllers/about-controller',
+        
+
+        /********* Profile Module *****************/
         profileController: 'components/profile/controllers/profile-controller'
+        
 
 	},
 
@@ -98,11 +106,21 @@ require.config({
 
         /** deps to app **/
         app: {
-        	deps: ['angular','angular_ocLazyLoad', 'angular_ui_bootstrap','firebase']
+        	deps: ['angular',
+                    'angular_route',
+                    'angular_mocks',
+                    'angular_sanitize',
+                    'angular_localization',
+                    'angular_cookies',
+                    'angular_resource',
+                    'angular_ui_bootstrap',
+                    'angular_ocLazyLoad', 
+                    'angular_fire',
+                    'firebase']
         },
 
         authController: {
-            deps: ['app']
+            deps: ['authService']
         },
 
     },
@@ -113,7 +131,7 @@ require.config({
 });
 
 
-require(['angular','app'], function (app) {
+require(['app'], function () {
 
   if(window.cordova){
     

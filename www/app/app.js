@@ -1,13 +1,4 @@
-define(['angular',
-		'angular_route',
-		'angular_mocks',
-		'angular_sanitize',
-		'angular_localization',
-		'angular_cookies',
-		'angular_resource',
-		'angular_ocLazyLoad',
-		'angular_fire',
-		'firebase'], 
+define(['app'], 
 	function () {
 
 		var app = angular.module('reffill', [
@@ -44,8 +35,8 @@ define(['angular',
 
 		app.config(function($routeProvider, $locationProvider, $ocLazyLoadProvider, $controllerProvider, $provide) {
 
-				app.registerController = $controllerProvider.register;
-			 	app.$register = $provide;
+				//app.registerController = $controllerProvider.register;
+			 	//app.$register = $provide;
 
 			 	/** Initialize firebase config **/
 			 	var config = {
@@ -59,21 +50,6 @@ define(['angular',
 		        if(firebase.initializeApp(config)!== null)
 		        	console.log('Firebase init is ok!');
 
-
-
-				/** ocLazy Load Config **/		
-				$ocLazyLoadProvider.config({
-			     modules: [{
-			    		name: 'auth-controller',
-			    		files: ['components/auth/controllers/auth-controller.js'],
-			    		name: 'about',
-			    		files: ['components/about/controllers/about-controller.js'],
-			    		name: 'profile',
-			    		files: ['components/profile/controllers/profile-controller.js']
-			 	 }]
-
-			  });
-					
 
 			$routeProvider
 			.when('/', {
@@ -90,45 +66,16 @@ define(['angular',
 			.when('/auth', {
 				templateUrl: 'app/components/auth/views/authView.html',
 				controller: 'AuthController',
-				//controllerAs: 'authController',
-				resolve: {
-				    langs: function (locale) {
-				      return locale.ready('auth');
-		    		},
-		    		loadModule: ['$ocLazyLoad', '$q', function ($ocLazyLoad, $q) {
-                        //debugger
-                        var deferred = $q.defer();
-
-                        // After loading the controller file we need to inject the module
-                        // to the parent module
-                        require(["authController"], function () {
-                            // Using OcLazyLoad we can inject the any module to the parent module
-                            $ocLazyLoad.inject('reffill.auth');
-                            deferred.resolve();
-                        });
-                        return deferred.promise;
-                    }]
-		    	}
-
-			})
-
-
-			.when('/about', {
-				templateUrl: 'app/components/about/views/aboutView.html',
-				//controller: 'AboutController',
-				//controllerAs: 'authController			',
 				resolve: {
 					    langs: function (locale) {
 					      return locale.ready('common');
 			    		},
 						loadModule: ['$ocLazyLoad', '$q', function ($ocLazyLoad, $q) {
-	                        //debugger
+	                       
 	                        var deferred = $q.defer();
-
-	                        // After loading the controller file we need to inject the module
-	                        // to the parent module
+	                       
 	                        require(["authController"], function () {
-	                            // Using OcLazyLoad we can inject the any module to the parent module
+	                            
 	                            $ocLazyLoad.inject('reffill.auth');
 	                            deferred.resolve();
 	                        });
@@ -139,47 +86,33 @@ define(['angular',
 			})
 
 
-			.when('/profile', {
-				templateUrl: 'app/components/profile/views/profileView.html',
-				//controller: 'AboutController',
-				//controllerAs: 'authController			',
+			.when('/about', {
+				templateUrl: 'app/components/about/views/aboutView.html',
 				resolve: {
-
-						// controller will not be loaded until $requireSignIn resolves
-				      	// Auth refers to our $firebaseAuth wrapper in the factory below
-				     	"currentAuth": ["Auth", function(Auth) {
-				        // $requireSignIn returns a promise so the resolve waits for it to complete
-				        // If the promise is rejected, it will throw a $routeChangeError (see above)
-				        return Auth.$requireSignIn();
-				      	}],
-
-
 					    langs: function (locale) {
 					      return locale.ready('common');
-			    		},
-						loadModule: ['$ocLazyLoad', '$q', function ($ocLazyLoad, $q) {
-	                        //debugger
-	                        var deferred = $q.defer();
-
-	                        // After loading the controller file we need to inject the module
-	                        // to the parent module
-	                        require(["profilerController"], function () {
-	                            // Using OcLazyLoad we can inject the any module to the parent module
-	                            $ocLazyLoad.inject('reffill.profile');
-	                            deferred.resolve();
-	                        });
-	                        return deferred.promise;
-                    	}]
+			    		}
 			    	}
 
 			})
 
 
+			.when('/profile', {
+				templateUrl: 'app/components/profile/views/profileView.html',
+				resolve: {
 
+				     	"currentAuth": ["Auth", function(Auth) {
+				        	return Auth.$requireSignIn();
+				      	}],
+
+					    langs: function (locale) {
+					      return locale.ready('common');
+			    		}
+			    	}
+
+			})
 			.otherwise({ redirectTo: '/' });
 
-
-		 // Add HTML5 History API support
 		  $locationProvider.html5Mode(true);
 
 		})
@@ -199,12 +132,11 @@ define(['angular',
 		    $httpBackend.whenGET(/.*/).passThrough();
 
 
-		     $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
-		    // We can catch the error thrown when the $requireSignIn promise is rejected
-		    // and redirect the user back to the home page
-		    if (error === "AUTH_REQUIRED") {
-		      $location.path("/auth");
-		    }
+	     $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
+		 
+			    if (error === "AUTH_REQUIRED") {
+			      $location.path("/auth");
+			    }
 		  });
 	  });
 
