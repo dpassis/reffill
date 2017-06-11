@@ -49,7 +49,11 @@ require.config({
         
 
         /********* Profile Module *****************/
-        profileController: 'components/profile/controllers/profile-controller'
+        profileController: 'components/profile/controllers/profile-controller',
+
+
+        /********* Shared Module *****************/
+        sharedDirective: 'components/shared/directives/shared-directive'
         
 
 	},
@@ -104,6 +108,10 @@ require.config({
             deps: ['angular','firebase']
         },
 
+        sharedDirective: {
+            deps: ['angular']
+        },
+
         /** deps to app **/
         app: {
         	deps: ['angular',
@@ -116,7 +124,8 @@ require.config({
                     'angular_ui_bootstrap',
                     'angular_ocLazyLoad', 
                     'angular_fire',
-                    'firebase']
+                    'firebase',
+                    'sharedDirective']
         },
 
         authController: {

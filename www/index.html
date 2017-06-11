@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html>
     <head>
-      <base href="/">
-      <!--<base href="/android_asset/www/">-->
-       <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--<base href="/">-->
+      <base href="/android_asset/www/">
+      <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src  'self' 'unsafe-inline' *">
+      <meta name="format-detection" content="telephone=no">
+      <meta name="msapplication-tap-highlight" content="no">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- app style-->
-        <link rel="stylesheet" type="text/css" href="css/index.css">
+      <!-- app style-->
+      <link rel="stylesheet" type="text/css" href="css/index.css">
 
-        <!-- Icons -->
-        <link rel="stylesheet" href="libs/css/font-awesome/4.7.0/font-awesome.min.css">
+      <!-- Icons -->
+      <link rel="stylesheet" href="libs/css/font-awesome/4.7.0/font-awesome.min.css">
 
-        <!-- Compiled and minified CSS Materialize -->
-        <link rel="stylesheet" href="libs/css/materialize/0.98.2/materialize.min.css">
+      <!-- Compiled and minified CSS Materialize -->
+      <link rel="stylesheet" href="libs/css/materialize/0.98.2/materialize.min.css">
 
-        <!--Import jQuery before materialize.js-->
-        <script type="text/javascript" src="libs/js/jquery/2.1.1/jquery.min.js"></script>
+      <!--Import jQuery before materialize.js-->
+      <script type="text/javascript" src="libs/js/jquery/2.1.1/jquery.min.js"></script>
 
-        <!-- Compiled and minified JavaScript -->
-        <script src="libs/js/materialize/0.98.2/materialize.min.js"></script>
+      <!-- Compiled and minified JavaScript -->
+      <script src="libs/js/materialize/0.98.2/materialize.min.js"></script>
 
     <title>Reffill</title>
     </head>
-      <body data-ng-controller="MainController">
+    <body data-ng-controller="MainController">
+      <nav-bar></nav-bar>
+      <menu-bar></menu-bar>
       <div class="container" ng-view></div>
 
-      
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
 
          <!--start requirejs -->
          <script data-main="app/app.require.js" src="app/libs/js/requirejs/2.3.3/require.js"></script>
-
     </body>
 </html>

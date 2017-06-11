@@ -9,7 +9,8 @@ define(['app'],
 											  'ngCookies',
 											  'ngResource',
 											  'oc.lazyLoad',
-											  'firebase'
+											  'firebase',
+											  'shareddirective'
 												]);
 
 		app.value('localeSupported', [
@@ -34,6 +35,8 @@ define(['app'],
 
 
 		app.config(function($routeProvider, $locationProvider, $ocLazyLoadProvider, $controllerProvider, $provide) {
+
+			
 
 				//app.registerController = $controllerProvider.register;
 			 	//app.$register = $provide;
@@ -99,6 +102,22 @@ define(['app'],
 
 			.when('/profile', {
 				templateUrl: 'app/components/profile/views/profileView.html',
+				resolve: {
+
+				     	"currentAuth": ["Auth", function(Auth) {
+				        	return Auth.$requireSignIn();
+				      	}],
+
+					    langs: function (locale) {
+					      return locale.ready('common');
+			    		}
+			    	}
+
+			})
+
+
+			.when('/timeline', {
+				templateUrl: 'app/components/timeline/views/timelineView.html',
 				resolve: {
 
 				     	"currentAuth": ["Auth", function(Auth) {
