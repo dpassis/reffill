@@ -10,11 +10,12 @@
     <li>
       <div class="userView">
       <a href="#!user"><img class="circle" src="img/photo.jpg"></a>
-      <span class="green-text text-darken-2">Daniel Paulo de Assis</span>
+      <span class="green-text text-darken-2">{{firebaseUser.displayName}}</span>
       <a href="profile"><span class="green-text email">Veja seu Perfil</span></a>
       </div>
     </li>
     <li><div class="divider"></div></li>
     <li><a class="subheader">Subheader</a></li>
     <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    <span class="green-text email" ng-click="signOut()">Sair</span></a>
 </ul>

@@ -1,7 +1,7 @@
 define(['app'], 
 	function () {
 
-		var app = angular.module('reffill', [
+		var app = angular.module('perffill', [
 											  'ngRoute',
 											  'ngMockE2E',
 											  'ngSanitize',
@@ -22,6 +22,7 @@ define(['app'],
 		app.controller('MainController', function($scope, $route, $location, locale, $firebaseAuth) {
 			 var auth = $firebaseAuth();
 			 var storage = firebase.storage();
+			 var database = firebase.database();
 
 			 console.log(auth);
 			 console.log(storage);
@@ -79,7 +80,7 @@ define(['app'],
 	                       
 	                        require(["authController"], function () {
 	                            
-	                            $ocLazyLoad.inject('reffill.auth');
+	                            $ocLazyLoad.inject('perffill.auth');
 	                            deferred.resolve();
 	                        });
 	                        return deferred.promise;

@@ -1,4 +1,4 @@
-var app = angular.module('reffill.auth',[]);
+var app = angular.module('perffill.auth',[]);
 
 
 app.controller('AuthController',
@@ -14,16 +14,25 @@ app.controller('AuthController',
 	$scope.$location = $location;
 	$scope.setLocale = locale.setLocale;
 
+
+	$scope.auth = Auth;
+
+    // any time auth state changes, add the user data to scope
+    $scope.auth.$onAuthStateChanged(function(firebaseUser) {
+      $scope.firebaseUser = firebaseUser;
+    });
+
     console.log(locale.getLocale());
 
     /********************************************
     * Create new User with email and passowrd   *
     *********************************************/
-	$scope.createUser = function(providerId) {
+	$scope.createUser = function() {
       	$scope.message = null;
       	$scope.error = null;
 
       	console.log(providerId);
+
 
       	if($scope.password == $scope.confPassword){
 
@@ -81,13 +90,70 @@ app.controller('AuthController',
 
 	};
 
+
+
+	/********************************************
+    * SignIn a app user                         *
+    *********************************************/
+    $scope.signInWithProvider = function(providerId) {
+      	$scope.message = null;
+      	$scope.error = null;
+
+      	var provider;
+
+
+      	if(providerId == 'facebook'){
+
+      		provider = new firebase.auth.FacebookAuthProvider();
+
+      		console.log('provider: facebook');
+
+      	}else if(providerId == 'google'){
+
+      		provider = new firebase.auth.GoogleAuthProvider();
+      		provider.addScope('https://www.googleapis.com/auth/plus.login');
+
+      		console.log('provider: google');
+
+      	}else if(providerId == 'twitter'){
+
+      		provider = new firebase.auth.TwitterAuthProvider();
+
+      		console.log('provider: twitter');
+
+      	}
+
+
+		Auth.$signInWithRedirect(provider).then(function() {
+		 Auth.getRedirectResult().then(function(result) {
+		    // This gives you a Google Access Token.
+		    // You can use it to access the Google API.
+		    var token = result.credential.accessToken;
+		    // The signed-in user info.
+		    var user = result.user;
+
+		    alert(user);
+		    // ...
+		  }).catch(function(error) {
+		    // Handle Errors here.
+		  	 $scope.error = error;
+		  });
+		}).catch(function(error) {
+		    // Handle Errors here.
+		  	 $scope.error = error;
+		  	 alert(error);
+		  });
+	
+
+	};
+
 	/********************************************
     * SignOut the app                           *
     *********************************************/
 	$scope.signOut = function () {
 		Auth.$signOut().then(function() {
 	    	console.log('signOut sucessfull');
-	    	$location.path("/auth");
+	    	$location.path("auth");
 		    $("nav-bar").hide();
 		}, function(error) {
 	    	console.log('Erro ao sair');

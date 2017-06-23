@@ -1,4 +1,4 @@
-var app = angular.module('reffill.auth',[]);
+var app = angular.module('perffill.auth',[]);
 
 app.factory("Auth", ["$firebaseAuth",
             function($firebaseAuth) {

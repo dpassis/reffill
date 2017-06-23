@@ -21,15 +21,16 @@
 			<a data-i18n="auth.forgotPassword" id="forgotPassword" href="#" class="red-text text-darken-2"></a>
 		</div>
       	<div class="row center-align">
-      		 <button data-i18n="auth.login" ng-click="signIn()" class="teal btn waves-effect waves-light" name="action"></button>
+      		 <button data-i18n="auth.login" ng-click="signOut()" class="teal btn waves-effect waves-light" name="action"></button>
       	</div>
       <p data-i18n="auth.loginWith" class="row center-align teal-text text-darken-2"></p>
       
       <div  class="row center-align">
-    		<i class="fa fa-facebook-square" ng-click="signOut()" style="font-size:36px; color: #3b5998;"></i>
-    		<i class="fa fa-google-plus-square" style="font-size:36px; color: #dd4b39;"></i>
-    		<i class="fa fa-twitter-square" style="font-size:36px; color: #55acee;"></i>
+    		<i class="fa fa-facebook-square" ng-click="signInWithProvider('facebook')" style="font-size:36px; color: #3b5998;"></i>
+    		<i class="fa fa-google-plus-square" ng-click="signInWithProvider('google')" style="font-size:36px; color: #dd4b39;"></i>
+    		<i class="fa fa-twitter-square"  ng-click="signInWithProvider('twitter')" style="font-size:36px; color: #55acee;"></i>
     	</div>
+      <p ng-if="error">Error: <strong>{{ error }}</strong></p>
     	<br>
     	<div class="row center-align">
 			   <a data-i18n="auth.createAccount" id="lnkCreateAccount" href="auth/create" class=""></a>

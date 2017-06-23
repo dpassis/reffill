@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.reffill" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Reffill</name>
+<widget id="com.perffill" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Perffill</name>
     <description>
        Favorite things in one place
     </description>
-    <author email="dev@reffill.com" href="http://reffill.com">
-        Reffill Team
+    <author email="dev@perffill.com" href="http://perffill.com">
+        Perffill Dev Team
     </author>
     <preference name="DisallowOverscroll" value="true" />
     <preference name="StatusBarBackgroundColor" value="#009688" />
@@ -14,10 +14,11 @@
     <preference name="SplashScreenDelay" value="3000" />
     <preference name="StatusBarBackgroundColor" value="#00695c" />
     <content src="index.html" />
-    <plugin name="cordova-plugin-whitelist" spec="1" />
-    <plugin name="cordova-plugin-splashscreen" spec="~4.0.2" />
     <access origin="*" />
     <access origin="content:///*" />
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
+    <allow-navigation href="data:*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -40,5 +41,19 @@
         <splash density="port-xxxhdpi" src="resources\android\splash\drawable-port-xxxhdpi-screen.png" />
     </platform>
     <icon src="resources\android\icon\drawable-xhdpi-icon.png" />
+    <universal-links>
+        <host name="https://hd87t.app.goo.gl/shZA" scheme="https" />
+        <host name="https://reffill-7ffbe.firebaseapp.com" scheme="https">
+            <path url="/__/auth/callback" />
+        </host>
+    </universal-links>
+    <engine name="android" spec="^6.2.3" />
+    <engine name="browser" spec="~4.1.0" />
+    <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
+    <plugin name="cordova-plugin-buildinfo" spec="^1.1.0" />
+    <plugin name="cordova-plugin-inappbrowser" spec="^1.7.1" />
+    <plugin name="cordova-plugin-splashscreen" spec="~4.0.2" />
     <plugin name="cordova-plugin-statusbar" spec="~2.2.3" />
+    <plugin name="cordova-plugin-whitelist" spec="1" />
+    <plugin name="cordova-universal-links-plugin" spec="^1.2.1" />
 </widget>

@@ -6,7 +6,7 @@ require.config({
 	paths: {
 
         /** load firebase **/
-        firebase: 'libs/js/firebase/3.7.4/firebase',
+        firebase: 'libs/js/firebase/4.1.3/firebase',
 
 		/** load angular **/
 		angular: 'libs/js/angularjs/1.5.6/angular.min',
@@ -146,10 +146,11 @@ require(['app'], function () {
     
     document.addEventListener("deviceready", onDeviceReady, false);
         function onDeviceReady() {
-            angular.bootstrap(document, ['reffill']);
+            angular.bootstrap(document, ['perffill']);
+            window.open = cordova.InAppBrowser.open;
         }
    }else{
-        angular.bootstrap(document, ['reffill']);
+        angular.bootstrap(document, ['perffill']);
    }
    
 });
