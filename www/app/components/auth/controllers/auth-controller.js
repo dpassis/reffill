@@ -20,6 +20,7 @@ app.controller('AuthController',
     // any time auth state changes, add the user data to scope
     $scope.auth.$onAuthStateChanged(function(firebaseUser) {
       $scope.firebaseUser = firebaseUser;
+      //console.log(user);
     });
 
     console.log(locale.getLocale());
@@ -93,7 +94,7 @@ app.controller('AuthController',
 
 
 	/********************************************
-    * SignIn a app user                         *
+    * SignIn with provider                      *
     *********************************************/
     $scope.signInWithProvider = function(providerId) {
       	$scope.message = null;
@@ -101,51 +102,58 @@ app.controller('AuthController',
 
       	var provider;
 
-
-      	if(providerId == 'facebook'){
-
-      		provider = new firebase.auth.FacebookAuthProvider();
-
-      		console.log('provider: facebook');
-
-      	}else if(providerId == 'google'){
-
-      		provider = new firebase.auth.GoogleAuthProvider();
-      		provider.addScope('https://www.googleapis.com/auth/plus.login');
-
-      		console.log('provider: google');
-
-      	}else if(providerId == 'twitter'){
-
-      		provider = new firebase.auth.TwitterAuthProvider();
-
-      		console.log('provider: twitter');
-
-      	}
+		firebase.auth().getRedirectResult().then(function(result) {
 
 
-		Auth.$signInWithRedirect(provider).then(function() {
-		 Auth.getRedirectResult().then(function(result) {
+			if (!$scope.firebaseUser) {
+
+				if(providerId == 'facebook'){
+
+		      		provider = new firebase.auth.FacebookAuthProvider();
+
+		      		console.log('provider: facebook');
+
+		      	}else if(providerId == 'google'){
+
+		      		provider = new firebase.auth.GoogleAuthProvider();
+		      		provider.addScope('https://www.googleapis.com/auth/plus.login');
+
+		      		console.log('provider: google');
+
+		      	}else if(providerId == 'twitter'){
+
+		      		provider = new firebase.auth.TwitterAuthProvider();
+
+		      		console.log('provider: twitter');
+	      		}
+
+		          // User not logged in, start login.
+		          Auth.$signInWithRedirect(provider);
+
+		        } else {
+		          // user logged in, go to home page.
+		          // You can use it to access the Google API.
+				  // var token = result.credential.accessToken;
+				    // The signed-in user info.
+				   var user = result.user;
+
+				   
+				          $location.path("/timeline");
+				          $("nav-bar").show();
+				          console.log(user);
+				 }
 		    // This gives you a Google Access Token.
-		    // You can use it to access the Google API.
-		    var token = result.credential.accessToken;
-		    // The signed-in user info.
-		    var user = result.user;
-
-		    alert(user);
+		    
 		    // ...
 		  }).catch(function(error) {
 		    // Handle Errors here.
 		  	 $scope.error = error;
-		  });
-		}).catch(function(error) {
-		    // Handle Errors here.
-		  	 $scope.error = error;
 		  	 alert(error);
 		  });
-	
 
 	};
+
+
 
 	/********************************************
     * SignOut the app                           *
@@ -158,9 +166,8 @@ app.controller('AuthController',
 		}, function(error) {
 	    	console.log('Erro ao sair');
 		});
-	}
+	};
 
-	
 
 }]);
 
@@ -172,11 +179,10 @@ app.config(['$routeProvider', '$locationProvider',function($routeProvider, $loca
 				templateUrl: 'app/components/auth/views/createView.html',
  				controller: 'AuthController',
 				resolve: {
-				  langs: function (locale) {
-				  return locale.ready('auth');
-		    		}
-		    	}
-
+				   langs: function (locale) {
+					      return locale.ready('auth');
+			    		}
+			    	}
 			})
 
 			.otherwise({ redirectTo: '/auth' });
@@ -187,8 +193,3 @@ app.config(['$routeProvider', '$locationProvider',function($routeProvider, $loca
 
 
 
-app.factory("Auth", ["$firebaseAuth",
-            function($firebaseAuth) {
-            return $firebaseAuth();
-            }
-]);

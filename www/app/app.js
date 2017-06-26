@@ -10,7 +10,8 @@ define(['app'],
 											  'ngResource',
 											  'oc.lazyLoad',
 											  'firebase',
-											  'shareddirective'
+											  'shareddirective',
+											  'authModule'
 												]);
 
 		app.value('localeSupported', [
@@ -19,12 +20,18 @@ define(['app'],
 		    'es'
 		  ]);
 
-		app.controller('MainController', function($scope, $route, $location, locale, $firebaseAuth) {
-			 var auth = $firebaseAuth();
+		app.controller('MainController',
+							['$scope',
+							 '$route',
+							  '$location', 
+							  'locale', 
+							  'Auth', function($scope, $route, $location, locale, Auth) {
+
+			 $scope.auth = Auth;
 			 var storage = firebase.storage();
 			 var database = firebase.database();
 
-			 console.log(auth);
+			 //console.log(auth);
 			 console.log(storage);
 
 		     $scope.$route = $route;
@@ -32,7 +39,26 @@ define(['app'],
 		     $scope.setLocale = locale.setLocale;
 
 		     console.log(locale.getLocale());
-		 })
+
+		      // any time auth state changes, add the user data to scope
+		    $scope.auth.$onAuthStateChanged(function(firebaseUser) {
+		      $scope.firebaseUser = firebaseUser;
+		      console.log($scope.firebaseUser );
+		    });
+
+		    if (!$scope.firebaseUser) {
+
+		    	$location.path("/timeline");
+		    	$("nav-bar").show();
+
+		    }else{
+		    	$location.path("/auth");
+		    }
+
+
+		 }]);
+
+
 
 
 		app.config(function($routeProvider, $locationProvider, $ocLazyLoadProvider, $controllerProvider, $provide) {
@@ -159,12 +185,5 @@ define(['app'],
 			    }
 		  });
 	  });
-
-
-		app.factory("Auth", ["$firebaseAuth",
-  			function($firebaseAuth) {
-    		return $firebaseAuth();
-  			}
-		]);
 
 });

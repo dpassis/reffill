@@ -112,6 +112,10 @@ require.config({
             deps: ['angular']
         },
 
+        authService: {
+            deps: ['angular','firebase','angular_fire']
+        },
+
         /** deps to app **/
         app: {
         	deps: ['angular',
@@ -125,7 +129,8 @@ require.config({
                     'angular_ocLazyLoad', 
                     'angular_fire',
                     'firebase',
-                    'sharedDirective']
+                    'sharedDirective',
+                    'authService']
         },
 
         authController: {
